@@ -8,6 +8,7 @@
 </head>
 <body>
   <video id="my-video" width="400px" autoplay muted playsinline></video>
+  <p id="my-id"></p>
 </body>
 <script>
   let localStream;
@@ -26,5 +27,17 @@
     console.error('mediaDevice.getUserMedia() error:', error);
     return;
   });
+  
+  //Peer作成
+  const peer = new Peer({
+    key: 'あなたのAPIキー',
+    debug: 3
+  });
+
+  //PeerID取得
+  peer.on('open', () => {
+    document.getElementById('my-id').textContent = peer.id;
+  });
+  
 </script>
 </html>
